@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: anthro-calculator
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn anthro_reloaded.wsgi:application"
+    staticPublishPath: staticfiles
