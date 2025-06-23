@@ -83,8 +83,10 @@ USE_I18N = True
 USE_TZ = True
 
 # Statikus fájlok
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # új
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 EXPORTED_DIR = os.path.join(BASE_DIR, "exported")
 
