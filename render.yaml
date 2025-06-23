@@ -1,7 +1,18 @@
 services:
   - type: web
-    name: anthro-calculator
+    name: anthro_calculator
     env: python
+    plan: free
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn anthro_reloaded.wsgi:application"
-    staticPublishPath: staticfiles
+    startCommand: "gunicorn anthro_app.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: anthro_app.settings
+      - key: PYTHON_VERSION
+        value: "3.10"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+
+
