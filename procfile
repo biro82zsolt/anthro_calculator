@@ -1,1 +1,1 @@
-web: gunicorn anthro_reloaded.wsgi
+web: gunicorn anthro_app.wsgi
