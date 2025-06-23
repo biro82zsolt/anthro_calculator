@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Sikeres feldolgozás</title>
+</head>
+<body>
+    <h1>✅ A fájl feldolgozása sikeresen megtörtént!</h1>
+
+    {% if csv_path %}
+        <p>A feldolgozott adatok exportálva lettek ide:</p>
+        <code>{{ csv_path }}</code>
+    {% endif %}
+
+    <p><a href="{% url 'upload_csv' %}">🔁 Új fájl feltöltése</a></p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- templates/admin_panel/home.html -->
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Kezdőlap</title>
+</head>
+<body>
+    <h1>Üdvözöllek az antropometriai alkalmazásban!</h1>
+</body>
+<h2>Adatfeltöltés</h2>
+<a href="{% url 'upload_csv' %}" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+    📤 CSV fájl feltöltése
+</a>
+
+
+<p>
+    📥 <a href="{% url 'download_template' %}">Minta Excel fájl letöltése</a><br>
+    💡 Kérjük, hogy töltse ki a letöltött fájlt, majd mentse el:
+</p>
+<ul>
+    <li>Fájlformátum: <strong>CSV</strong></li>
+    <li>Elválasztó: <strong>pontosvessző (;)</strong></li>
+    <li>Kódolás: <strong>UTF-8</strong></li>
+</ul>
+
+<p>
+    Ezután töltse fel az <strong>Adatfeltöltés</strong> menüpontban.
+</p>
+
+</html>

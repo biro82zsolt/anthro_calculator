@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="hu">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Antropometriai Kalkulátor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --text-color: #eeeeee;
+            --button-bg: #43a047;
+            --button-hover: #2e7d32;
+        }
+
+        body.light {
+            --bg-color: #ffffff;
+            --text-color: #1e1e1e;
+            --button-bg: #4CAF50;
+            --button-hover: #388E3C;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .button-container {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--button-bg);
+            color: #ffffff;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .button:hover {
+            background-color: var(--button-hover);
+        }
+
+        .theme-toggle {
+            margin-top: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--text-color);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="dark" id="body">
+    <div class="header">
+        <img src="{% static 'logo.png' %}" alt="Antropometriai Kalkulátor logó">
+        <h1>Antropometriai Kalkulátor</h1>
+    </div>
+
+    <h2>Válassz műveletet:</h2>
+    <div class="button-container">
+        <a href="{% url 'export_template' %}" class="button">📄 Minta Excel letöltése</a>
+        <a href="{% url 'upload_csv' %}" class="button">📤 Saját fájl feltöltése</a>
+        <a href="{% url 'demo_view' %}" class="button">🧪 Demó megtekintése</a>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌓 Téma váltása</div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.getElementById("body");
+            body.classList.toggle("light");
+        }
+    </script>
+</body>
+</html>

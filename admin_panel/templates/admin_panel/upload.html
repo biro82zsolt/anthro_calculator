@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV fájl feltöltése</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --text-color: #eeeeee;
+            --button-bg: #43a047;
+            --button-hover: #2e7d32;
+            --input-bg: #2c2c2c;
+            --input-text: #ffffff;
+        }
+
+        body.light {
+            --bg-color: #ffffff;
+            --text-color: #1e1e1e;
+            --button-bg: #4CAF50;
+            --button-hover: #388E3C;
+            --input-bg: #ffffff;
+            --input-text: #000000;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            background-color: var(--input-bg);
+            color: var(--input-text);
+            border: 1px solid #888;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: var(--button-bg);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .theme-toggle {
+            margin-top: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: underline;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+
+<body class="dark" id="body">
+    <div class="header">
+        <img src="{% static 'logo.png' %}" alt="Antropometriai Kalkulátor logó">
+        <h1>CSV fájl feltöltése</h1>
+    </div>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <p>💡 Kérlek, töltsd ki a letöltött fájlt, majd mentsd el az alábbi módon:</p>
+    <ul>
+        <li>Fájlformátum: <strong>CSV</strong></li>
+        <li>Elválasztó: <strong>pontosvessző (;)</strong></li>
+        <li>Kódolás: <strong>UTF-8</strong></li>
+    </ul>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file" required><br>
+        <button type="submit">📤 Feltöltés</button>
+    </form>
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌓 Téma váltása</div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+        }
+    </script>
+</body>
+</html>

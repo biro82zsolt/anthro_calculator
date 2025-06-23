@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Feltöltés eredménye</title>
+</head>
+<body>
+    <h2>Beolvasott adatok:</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for col in header %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'upload_csv' %}">Vissza a feltöltéshez</a>
+</body>
+</html>
