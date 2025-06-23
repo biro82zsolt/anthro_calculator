@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: anthro_calculator
+    name: anthro-calculator
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
@@ -14,5 +14,3 @@ services:
         generateValue: true
       - key: DEBUG
         value: "False"
-
-
