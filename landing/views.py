@@ -32,3 +32,6 @@ def export_template(request):
         return FileResponse(open(template_path, 'rb'), as_attachment=True, filename="ures_sablon.xlsx")
     else:
         raise Http404("A sablon fájl nem található.")
+
+def info_page(request):
+    return render(request, "info.html")
