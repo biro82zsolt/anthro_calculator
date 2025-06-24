@@ -41,21 +41,31 @@ def upload_csv(request):
     if request.method == "POST" and request.FILES.get("file"):
         try:
             file = request.FILES["file"]
+            text = file.read().decode("utf-8-sig")
+
             df = pd.read_csv(
-                file, sep=";", decimal=",", quotechar='"', encoding="utf-8"
-            )
-            print("Beolvasott oszlopok:", df.columns.tolist())
-            print("Első 3 sor:\n", df.head().to_string())
+                io.StringIO(text),
+                sep=";",
+                decimal=",",
+                quotechar='"',
+                skip_blank_lines=True,
+                engine="python",
+                on_bad_lines="skip",
+                header=0
+            ).dropna(how="all")
+
+            if df.empty or df.columns.size == 0:
+                messages.error(request, "A CSV fájl üres vagy nem tartalmaz oszlopokat.")
+                return HttpResponseRedirect(request.path)
+
+            required_cols = {"név", "testmagasság", "neme"}
+            if not required_cols.issubset(df.columns):
+                messages.error(request, "Hiányzó kötelező oszlop(ok): 'név', 'testmagasság', 'neme'.")
+                return HttpResponseRedirect(request.path)
 
             df_processed = process_dataframe(df)
-            print(df_processed[["név", "testmagasság", "vttm"]].to_string())
-            print(df_processed.head().to_string())
-
-            # Export Excel fájlba
             export_path = export_dataframe_to_excel(df_processed)
             export_filename = os.path.basename(export_path)
-
-            # Diagram generálása
             chart_filename = generate_height_chart(df_processed)
 
             messages.success(request, "Fájl sikeresen feldolgozva.")
@@ -69,7 +79,6 @@ def upload_csv(request):
             return HttpResponseRedirect(request.path)
 
     return render(request, "admin_panel/upload.html")
-
 
 def export_csv(request):
     excel_path = os.path.join(settings.BASE_DIR, "exported", "processed_data.xlsx")
