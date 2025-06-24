@@ -4,13 +4,15 @@ from pathlib import Path
 # Alap elérési út
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Titkos kulcs (fejlesztéshez jó ez is)
-SECRET_KEY = "django-insecure-anthropometry-very-secret-key"
+# Titkos kulcs
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-anthropometry-very-secret-key")
 
-# Debug fejlesztéshez legyen True
-DEBUG = True
 
-ALLOWED_HOSTS = []
+# Debug fejlesztéshez
+DEBUG = os.environ.get("DEBUG", "True") == "True"
+
+
+ALLOWED_HOSTS = ["*"] if DEBUG else [os.environ.get("RENDER_EXTERNAL_HOSTNAME", "localhost")]
 
 # Appok
 INSTALLED_APPS = [
