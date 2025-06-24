@@ -149,6 +149,8 @@ def generate_height_chart(df):
     plt.tight_layout()
 
     filename = f"chart_{int(time.time())}.png"
+    media_dir = settings.MEDIA_ROOT
+    os.makedirs(media_dir, exist_ok=True)
     chart_path = os.path.join(settings.MEDIA_ROOT, filename)
     plt.savefig(chart_path)
     return os.path.join(settings.MEDIA_URL, filename)
