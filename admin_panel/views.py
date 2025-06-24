@@ -16,21 +16,21 @@ from admin_panel.utils import export_dataframe_to_excel
 
 
 def demo_view(request):
-    try:
-        demo_file = os.path.join(settings.STATICFILES_DIRS[0], "demo_data.csv")
-        df = pd.read_csv(demo_file, sep=";", decimal=",", encoding="utf-8")
-        df_processed = process_dataframe(df)
+    demo_file_path = os.path.join(settings.BASE_DIR, "static", "demo_data.csv")
+    if not os.path.exists(demo_file_path):
+        return HttpResponse("Demó adatfájl nem található.", status=404)
 
-        chart_filename = generate_height_chart(df_processed)
-        export_path = export_dataframe_to_excel(df_processed)
-        export_filename = os.path.basename(export_path)
+    df = pd.read_csv(demo_file_path, sep=";", decimal=",", encoding="utf-8")
+    df_processed = process_dataframe(df)
 
-        return render(request, "admin_panel/demo.html", {
-            "chart": chart_filename,
-            "excel_path": export_filename
-        })
-    except Exception as e:
-        return render(request, "admin_panel/demo.html", {"error": str(e)})
+    excel_path = export_dataframe_to_excel(df_processed)
+    excel_filename = os.path.basename(excel_path)
+    chart_filename = generate_height_chart(df_processed)
+
+    return render(request, "landing/demo.html", {
+        "chart": chart_filename,
+        "excel_path": excel_filename
+    })
 
 
 def home(request):
