@@ -3,7 +3,7 @@ services:
     name: anthro-calculator
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
+    buildCommand: buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
     startCommand: "gunicorn anthro_app.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
