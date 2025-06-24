@@ -149,9 +149,9 @@ def generate_height_chart(df):
     plt.tight_layout()
 
     filename = f"chart_{int(time.time())}.png"
-    chart_path = os.path.join(settings.STATICFILES_DIRS[0], filename)
+    chart_path = os.path.join(settings.MEDIA_ROOT, filename)
     plt.savefig(chart_path)
-    return filename
+    return os.path.join(settings.MEDIA_URL, filename)
 
 
 def calculate_plx(akk, kzk, vas):

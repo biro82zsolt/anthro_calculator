@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Virtuális környezet
+venv/
+.venv/
+ENV/
+env/
+
+# IDE fájlok
+.idea/
+.vscode/
+
+# Django
+db.sqlite3
+*.sqlite3
+/media/
+exported/
+staticfiles/
+
+# CSV, Excel, tesztadatok
+*.csv
+*.xlsx
+
+# Mac/Windows/Linux rejtett fájlok
+.DS_Store
+Thumbs.db
