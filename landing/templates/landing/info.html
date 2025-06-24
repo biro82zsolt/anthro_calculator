@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hu">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>További információk – Antropometriai Kalkulátor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #222;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #2e7d32;
+        }
+        a.button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📈 További információk</h1>
+
+    <h2>🔍 Mi ez az alkalmazás?</h2>
+    <p>
+        Ez a webes antropometriai kalkulátor segít a gyermekek várható testmagasságának becslésében,
+        a Mészáros-féle módszer alapján. Az algoritmus a jelenlegi testmagasság, életkor,
+        nem, valamint különböző testméretek (pl. alkarkerület, vállszélesség, testsúly) alapján
+        számítja ki a várható testmagasságot (VTTM).
+    </p>
+
+    <h2>📅 Számítás alapjául szolgáló képletek</h2>
+    <p>
+        <strong>Várható testmagasság (VTTM):</strong><br>
+        Fiúk: VTTM = jelenlegi testmagasság + (18 - életkor) × 0,6<br>
+        Lányok: VTTM = jelenlegi testmagasság + (18 - életkor) × 0,5
+    </p>
+    <p>
+        <strong>Morfológiai kor (MK):</strong><br>
+        MK = 0,25 × (TTM_kor + TTS_kor + PLX_kor + DCK) ± korrekció<br>
+        A korrekció mértéke az életkori és testmagasság szerinti eltéréstől függ (5–8%).
+    </p>
+
+    <h2>⚠️ Fontos korlátozások</h2>
+    <ul>
+        <li>Az eredmény csak becslés, nem helyettesíti az orvosi diagnózist.</li>
+        <li>Kizárólag normál fejlődésű gyermekekre érvényes.</li>
+        <li>Extrém testalkati vagy genetikai eltérések esetén nem pontos.</li>
+        <li>A referenciaértékek hazai populációból származnak.</li>
+        <li>Oktatási és szemléltetési célra készült eszköz.</li>
+    </ul>
+
+    <h2>📁 Adatbevitelről röviden</h2>
+    <p>
+        Az adatokat CSV vagy Excel formátumban lehet feltölteni, melyben a következő oszlopok szükségesek:
+    </p>
+    <ul>
+        <li>Név</li>
+        <li>Nem (1 = fiú, 2 = lány)</li>
+        <li>Születési dátum</li>
+        <li>Mérési dátum</li>
+        <li>Testmagasság, testsúly</li>
+        <li>Üõőmagasság, alkarkerület, vállszélesség, stb.</li>
+    </ul>
+
+    <a href="/" class="button">⬅️ Vissza a főoldalra</a>
+</body>
+</html>

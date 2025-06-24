@@ -11,4 +11,7 @@ urlpatterns = [
     path('', landing_home, name='landing_home'),
     path('export-template/', export_template, name='export_template'),
     path("demo/", demo_view, name="demo_view"),
+    path("info/", views.info_page, name="info"),
+
+
 ]
