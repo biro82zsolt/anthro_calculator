@@ -95,10 +95,5 @@ EXPORTED_DIR = os.path.join(BASE_DIR, "exported")
 # Alkalmazás alapértelmezett mezőtípusa
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # <– ez legyen a legelsők között
-    ...
-]
 
 
